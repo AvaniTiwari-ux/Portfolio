@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Avani Tiwari — UX, 3D & Product Designer</title>
+<meta name="description" content="Portfolio of a UX designer working in 3D, product design and visual storytelling.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;1,6..96,400&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#16040a;--maroon:#3b0b17;--wine:#7a1f2e;--glow:#f2c9b4;--ivory:#f5e8de;
+--serif:'Bodoni Moda',Georgia,serif;--sans:'Instrument Sans',system-ui,sans-serif;--x:50vw;--y:40vh;--r:230px}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:radial-gradient(120% 80% at 50% 0,var(--maroon),var(--ink) 70%) fixed;color:var(--ivory);font:400 1.05rem/1.65 var(--sans);overflow-x:hidden}
+body.lit{--r:3000px}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--glow);outline-offset:4px}
+/* the spotlight: everything outside the beam sits in shadow */
+#beam{position:fixed;inset:0;z-index:50;pointer-events:none;
+background:radial-gradient(circle var(--r) at var(--x) var(--y),transparent 0,rgba(10,2,5,.2) 35%,rgba(10,2,5,.9) 100%);transition:opacity .6s}
+body.lit #beam{opacity:0}
+header{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;justify-content:space-between;align-items:center;padding:1.2rem clamp(1rem,4vw,3rem)}
+header b{font:italic 400 1.2rem var(--serif)}
+nav{display:flex;gap:1.4rem;align-items:center}
+nav a{text-decoration:none;opacity:.8}nav a:hover{opacity:1}
+button{font:inherit;color:inherit;cursor:pointer}
+.lights{background:none;border:1px solid var(--glow);border-radius:99px;padding:.35rem .9rem}
+.lights[aria-pressed=true]{background:var(--glow);color:var(--ink)}
+section{min-height:100vh;padding:7rem clamp(1.2rem,6vw,6rem) 4rem;max-width:1300px;margin:auto}
+h1,h2{font-family:var(--serif);font-weight:400;line-height:1.02;letter-spacing:-.02em}
+h1{font-size:clamp(3rem,10vw,9rem)}
+h1 em{color:var(--glow)}
+h2{font-size:clamp(2.2rem,5vw,4.5rem);margin-bottom:1.5rem}
+.hero{display:flex;flex-direction:column;justify-content:center}
+.hero p{max-width:34rem;margin-top:2rem;opacity:.85}
+.hint{margin-top:3rem;opacity:.55;font-size:.9rem}
+/* disciplines */
+.disc{list-style:none;padding:0;margin-top:2rem}
+.disc li{font:italic 400 clamp(2rem,6vw,5rem)/1.15 var(--serif);border-top:1px solid #7a1f2e88;padding:1rem 0;display:flex;justify-content:space-between;align-items:baseline;gap:2rem;transition:padding .4s,color .4s}
+.disc li span{font:400 .95rem var(--sans);max-width:20rem;opacity:.7;text-align:right}
+.disc li:hover{padding-left:2rem;color:var(--glow)}
+/* work */
+.case{display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:start}
+.stage{perspective:1100px}
+.stage img{width:100%;display:block;border-radius:6px;box-shadow:0 40px 80px #000a;transition:transform .15s;cursor:zoom-in}
+.meta dt{color:var(--glow);font-size:.9rem;margin-top:1.4rem}
+.meta dd{margin:0}
+.thumbs{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem}
+.thumbs img{width:100%;height:100%;object-fit:cover;border-radius:4px;cursor:zoom-in;transition:transform .4s}
+.thumbs img:hover{transform:scale(1.03)}
+.vr{margin-top:3rem;padding:1.4rem 1.8rem;border-left:3px solid var(--glow);background:#7a1f2e33;border-radius:0 8px 8px 0;max-width:40rem}.vr b{font:italic 400 1.4rem var(--serif);margin-right:.4rem}
+.wings{margin-top:6rem;border:1px dashed var(--wine);border-radius:8px;padding:3rem;text-align:center;font:italic 1.6rem var(--serif);opacity:.75}
+footer{padding:6rem 1.2rem 5rem;text-align:center}
+footer .ig{margin-top:1.5rem;opacity:.85}footer .ig a{font:500 1.05rem var(--sans);color:var(--glow)}
+footer a{font:italic clamp(1.8rem,5vw,4rem) var(--serif);color:var(--glow)}
+/* curtain intro */
+#curtain{position:fixed;inset:0;z-index:100;display:grid;place-items:center}
+#curtain i{position:absolute;top:0;bottom:0;width:50.5%;background:repeating-linear-gradient(90deg,#5a1020 0 28px,#3b0b17 28px 56px);transition:transform 1.6s cubic-bezier(.7,0,.2,1)}
+#curtain .l{left:0}#curtain .r{right:0}
+#curtain.open .l{transform:translateX(-101%)}#curtain.open .r{transform:translateX(101%)}
+#curtain.open{pointer-events:none;visibility:hidden;transition:visibility 0s 1.7s}#curtain.open button{opacity:0}
+#curtain button{position:relative;background:var(--ivory);color:var(--ink);border:0;padding:1rem 2rem;border-radius:99px;font-weight:500;transition:opacity .3s}
+#lb{position:fixed;inset:0;z-index:90;background:#0a0205ee;display:none;place-items:center;padding:2rem;cursor:zoom-out}
+#lb.on{display:grid}#lb img{max-width:100%;max-height:90vh;border-radius:6px}
+@media(max-width:800px){.case{grid-template-columns:1fr}.disc li{flex-direction:column;gap:.3rem}.disc li span{text-align:left}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div id="curtain"><i class="l"></i><i class="r"></i><button id="raise">Raise the curtain</button></div>
+<div id="beam"></div>
+<header>
+  <b>Avani Tiwari</b>
+  <nav><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a>
+  <button class="lights" id="lights" aria-pressed="false">House lights</button></nav>
+</header>
+
+<main>
+<section class="hero">
+  <h1>Avani designs<br>spaces you can <em>step into.</em></h1>
+  <p>UX and product designer working in 3D and visual storytelling. I'm Avani, and I build experiences where the story is something you walk through, not scroll past.</p>
+  <p class="hint">Move your cursor to light the room. Prefer it bright? Switch on the house lights.</p>
+</section>
+
+<section id="about">
+  <h2>Three ways I work</h2>
+  <ul class="disc">
+    <li>UX design <span>Research-led flows and interfaces people understand at first glance.</span></li>
+    <li>3D design <span>Modelling and building virtual spaces and objects in ShapeXR.</span></li>
+    <li>Visual storytelling <span>Turning a subject into a sequence people want to follow.</span></li>
+  </ul>
+</section>
+
+<section id="work">
+  <h2>Opera of the Forsaken</h2>
+  <div class="case">
+    <div class="stage"><img id="tilt" src="assets/exterior.jpg" alt="Exterior of the circular columned virtual gallery with red carpet steps and the exhibition title screen"></div>
+    <dl class="meta">
+      <dt>What it is</dt><dd>An experimental exhibition of seven musical instruments, built in ShapeXR as a walkable circular gallery under a white colonnade.</dd>
+      <dt>The idea</dt><dd>Instruments are usually shown behind glass with a label. Here, you walk a red carpet that spirals through the columns, and every instrument gets its own alcove, its own story screen and its own mood. The building is the narrator.</dd>
+      <dt>My role</dt><dd>3D design, spatial layout, interface screens, visual storytelling.</dd>
+      <dt>Experience it</dt><dd>Open it on a screen, or put on a VR headset and walk through it at full scale.</dd>
+      <dt>Tool</dt><dd>ShapeXR</dd>
+    </dl>
+  </div>
+  <div class="thumbs">
+    <img src="assets/interior.jpg" alt="Inside the gallery: grand piano alcove, vinyl records, a portrait, a saxophone and a gramophone">
+    <img src="assets/piano.jpg" alt="Close view of the grand piano with its information screen">
+  </div>
+  <div class="vr"><b>Best in VR.</b> This exhibition was designed to be walked through in a headset. Ask me for a demo.</div>
+  <div class="wings">Next project is waiting in the wings.</div>
+</section>
+</main>
+
+<footer id="contact">
+  <p>Hi, I'm Avani. Want to build something together?</p>
+  <a href="mailto:avanitiwari2468@gmail.com">avanitiwari2468@gmail.com</a>
+  <p class="ig">or find me on Instagram: <a href="https://www.instagram.com/poetry_thataintpaneer" target="_blank" rel="noopener">@poetry_thataintpaneer</a></p>
+</footer>
+<div id="lb" role="dialog" aria-label="Enlarged image"><img alt=""></div>
+
+<script>
+const root=document.documentElement,body=document.body;
+const move=(x,y)=>{root.style.setProperty('--x',x+'px');root.style.setProperty('--y',y+'px')};
+addEventListener('pointermove',e=>move(e.clientX,e.clientY));
+addEventListener('touchmove',e=>move(e.touches[0].clientX,e.touches[0].clientY),{passive:true});
+document.getElementById('raise').onclick=()=>document.getElementById('curtain').classList.add('open');
+const l=document.getElementById('lights');
+l.onclick=()=>{l.setAttribute('aria-pressed',body.classList.toggle('lit'))};
+// 3D tilt on the gallery image
+const t=document.getElementById('tilt');
+t.addEventListener('pointermove',e=>{const r=t.getBoundingClientRect(),px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;
+t.style.transform=`rotateY(${px*14}deg) rotateX(${-py*14}deg)`});
+t.addEventListener('pointerleave',()=>t.style.transform='');
+// lightbox
+const lb=document.getElementById('lb');
+document.querySelectorAll('.stage img,.thumbs img').forEach(i=>i.onclick=()=>{lb.querySelector('img').src=i.src;lb.classList.add('on')});
+lb.onclick=()=>lb.classList.remove('on');
+addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('on')});
+</script>
+</body>
+</html>
